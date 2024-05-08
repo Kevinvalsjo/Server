@@ -10,7 +10,7 @@ public class Main {
 // Create a MulticastSocket
         MulticastSocket serverMulticastSocket =
                 new MulticastSocket (portnumber);
-        System.out.println("MulticastSocket is created at port" + portnumber);
+        System.out.println("Räkna lite med " + portnumber);
 // Determine the IP address of a host, given the host name InetAddress group =
         InetAddress group=  InetAddress.getByName("225.4.5.6");
 // getByName- returns IP address of given host
@@ -24,11 +24,21 @@ public class Main {
             DatagramPacket data =
                     new DatagramPacket (buf, buf.length);
             serverMulticastSocket.receive(data);
+
+            DatagramPacket data2 =
+                    new DatagramPacket (buf, buf.length);
+            serverMulticastSocket.receive(data2);
             String msg =
                     new String(data.getData()).trim();
-            System.out.println(data.getData());
+
+            String msg2 = new String(data2.getData()).trim();
+
+            int msg3= Integer.parseInt(msg)+Integer.parseInt(msg2);
+            System.out.println(" Ok " +msg+ " + " +msg2+ " = " +msg3);
 
         }
         serverMulticastSocket.close();
+
     }
+
 }
