@@ -1,4 +1,6 @@
 import java.net.*;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+
 public class Main {
     public static void main(String args[]) throws Exception {
 // Default port number we are going to use
@@ -15,7 +17,7 @@ public class Main {
         InetAddress group = InetAddress.getByName("225.4.5.6");
 // getByName- returns IP address of given host
         serverMulticastSocket.joinGroup(group);
-        System.out.println("Calling....");
+        System.out.println("Hämtar...");
         boolean infinite = true;
 
 
@@ -29,12 +31,13 @@ public class Main {
                     new DatagramPacket(buf, buf.length);
             serverMulticastSocket.receive(data2);
 
+
             DatagramPacket data3 =
                     new DatagramPacket(buf, buf.length);
             serverMulticastSocket.receive(data3);
 
-            DatagramPacket data4 =
 
+            DatagramPacket data4 =
                     new DatagramPacket(buf, buf.length);
             serverMulticastSocket.receive(data4);
 
@@ -46,19 +49,23 @@ public class Main {
 
 
 
+
             String msg =  new String(data.getData()).trim();
+
 
             String msg2 = new String(data2.getData()).trim();
 
+
             String msg3 = new String(data3.getData()).trim();
+
 
             String msg4 = new String(data4.getData()).trim();
 
+
             String msg7 = new String(data5.getData()).trim();
-            System.out.println(msg7);
+int msg9= Integer.parseInt(msg7);
 
-
-            if (msg7.equalsIgnoreCase("2") ) {
+            if (msg9==1) {
                 int msg5 = Integer.parseInt(msg) + Integer.parseInt(msg2);
                 System.out.println(msg + " + " + msg2 + " = " + msg5);
             }
