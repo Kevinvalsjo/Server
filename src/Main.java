@@ -9,36 +9,70 @@ public class Main {
 
 // Create a MulticastSocket
         MulticastSocket serverMulticastSocket =
-                new MulticastSocket (portnumber);
+                new MulticastSocket(portnumber);
         System.out.println("Räkna lite med " + portnumber);
 // Determine the IP address of a host, given the host name InetAddress group =
-        InetAddress group=  InetAddress.getByName("225.4.5.6");
+        InetAddress group = InetAddress.getByName("225.4.5.6");
 // getByName- returns IP address of given host
-        serverMulticastSocket.joinGroup (group);
+        serverMulticastSocket.joinGroup(group);
         System.out.println("Calling....");
         boolean infinite = true;
 
 
-        while(infinite){
-            byte buf[]= new byte[1024];
+        while (infinite) {
+            byte buf[] = new byte[1024];
             DatagramPacket data =
-                    new DatagramPacket (buf, buf.length);
+                    new DatagramPacket(buf, buf.length);
             serverMulticastSocket.receive(data);
 
             DatagramPacket data2 =
-                    new DatagramPacket (buf, buf.length);
+                    new DatagramPacket(buf, buf.length);
             serverMulticastSocket.receive(data2);
-            String msg =
-                    new String(data.getData()).trim();
+
+            DatagramPacket data3 =
+                    new DatagramPacket(buf, buf.length);
+            serverMulticastSocket.receive(data3);
+
+            DatagramPacket data4 =
+
+                    new DatagramPacket(buf, buf.length);
+            serverMulticastSocket.receive(data4);
+
+
+
+            DatagramPacket data5 =
+                    new DatagramPacket(buf, buf.length);
+            serverMulticastSocket.receive(data5);
+
+
+
+            String msg =  new String(data.getData()).trim();
 
             String msg2 = new String(data2.getData()).trim();
 
-            int msg3= Integer.parseInt(msg)+Integer.parseInt(msg2);
-            System.out.println(" Ok " +msg+ " + " +msg2+ " = " +msg3);
+            String msg3 = new String(data3.getData()).trim();
 
-        }
+            String msg4 = new String(data4.getData()).trim();
+
+            String msg7 = new String(data5.getData()).trim();
+            System.out.println(msg7);
+
+
+            if (msg7.equalsIgnoreCase("2") ) {
+                int msg5 = Integer.parseInt(msg) + Integer.parseInt(msg2);
+                System.out.println(msg + " + " + msg2 + " = " + msg5);
+            }
+
+            else{
+                int msg8 = Integer.parseInt(msg3) * Integer.parseInt(msg4);
+                System.out.println(msg3 + " * " + msg4 + " = " + msg8);
+            }
+
+
+
+
+
+            }
         serverMulticastSocket.close();
-
+        }
     }
-
-}
