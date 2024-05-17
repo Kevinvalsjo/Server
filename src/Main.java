@@ -12,7 +12,7 @@ public class Main {
 // Create a MulticastSocket
         MulticastSocket serverMulticastSocket =
                 new MulticastSocket(portnumber);
-        System.out.println("Räkna lite med " + portnumber);
+        System.out.println("Räkna");
 // Determine the IP address of a host, given the host name InetAddress group =
         InetAddress group = InetAddress.getByName("225.4.5.6");
 // getByName- returns IP address of given host
@@ -22,6 +22,7 @@ public class Main {
 
 
         while (infinite) {
+
             byte buf[] = new byte[1024];
             DatagramPacket data =
                     new DatagramPacket(buf, buf.length);
@@ -63,23 +64,20 @@ public class Main {
 
 
             String msg7 = new String(data5.getData()).trim();
+
 int msg9= Integer.parseInt(msg7);
 
             if (msg9==1) {
                 int msg5 = Integer.parseInt(msg) + Integer.parseInt(msg2);
-                System.out.println(msg + " + " + msg2 + " = " + msg5);
+                System.out.println("Summan av "+msg + " + " + msg2 + " = " + msg5);
             }
 
             else{
                 int msg8 = Integer.parseInt(msg3) * Integer.parseInt(msg4);
-                System.out.println(msg3 + " * " + msg4 + " = " + msg8);
+                System.out.println("Produkten av "+msg3 + " * " + msg4 + " = " + msg8);
             }
 
-
-
-
-
-            }
+        }
         serverMulticastSocket.close();
         }
     }
