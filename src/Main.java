@@ -34,49 +34,50 @@ public class Main {
             msg7 = new String(data5.getData()).trim();
              msg9= Integer.parseInt(msg7);
 
-
-            if (msg9==1) {
-                System.out.println("addition");
-                 data =
-                        new DatagramPacket(buf, buf.length);
-                serverMulticastSocket.receive(data);
-
-
-                msg =  new String(data.getData()).trim();
-                data2 =
-                        new DatagramPacket(buf, buf.length);
-                serverMulticastSocket.receive(data2);
-               msg2 = new String(data2.getData()).trim();
-
-                 msg5 = Integer.parseInt(msg) + Integer.parseInt(msg2);
-                System.out.println("Summan av " + msg + " + " + msg2 + " = " + msg5);
+switch(msg9) {
+    case 1 ->{
+        System.out.println("addition");
+        data =
+                new DatagramPacket(buf, buf.length);
+        serverMulticastSocket.receive(data);
 
 
+        msg = new String(data.getData()).trim();
+        data2 =
+                new DatagramPacket(buf, buf.length);
+        serverMulticastSocket.receive(data2);
+        msg2 = new String(data2.getData()).trim();
+
+        msg5 = Integer.parseInt(msg) + Integer.parseInt(msg2);
+        System.out.println("Summan av " + msg + " + " + msg2 + " = " + msg5);
 
 
-            }
-            else{
-                System.out.println("Multiplikation");
-                data3 =
-                        new DatagramPacket(buf, buf.length);
-                serverMulticastSocket.receive(data3);
+    }
+    case 2 -> {
+        System.out.println("Multiplikation");
+        data3 =
+                new DatagramPacket(buf, buf.length);
+        serverMulticastSocket.receive(data3);
 
 
+        msg3 = new String(data3.getData()).trim();
 
-                msg3 = new String(data3.getData()).trim();
+        data4 =
+                new DatagramPacket(buf, buf.length);
+        serverMulticastSocket.receive(data4);
 
-                data4 =
-                        new DatagramPacket(buf, buf.length);
-                serverMulticastSocket.receive(data4);
-
-                 msg4 = new String(data4.getData()).trim();
-
-
-                msg8 = Integer.parseInt(msg3) * Integer.parseInt(msg4);
-                System.out.println("Produkten av "+msg3 + " * " + msg4 + " = " + msg8);
-            }
+        msg4 = new String(data4.getData()).trim();
 
 
+        msg8 = Integer.parseInt(msg3) * Integer.parseInt(msg4);
+        System.out.println("Produkten av " + msg3 + " * " + msg4 + " = " + msg8);
+    }
+    case 3 ->{
+        infinite=false;
+        serverMulticastSocket.close();
+    }
+
+}
 
 
 
@@ -88,7 +89,7 @@ public class Main {
 
 
         }
-        serverMulticastSocket.close();
+
 
         }
     }
