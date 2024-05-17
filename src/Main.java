@@ -23,24 +23,29 @@ public class Main {
 
         while (infinite) {
             byte buf[] = new byte[1024];
-String msg,msg2,msg3,msg4,msg7;
-int msg9,msg5,msg8;
-            DatagramPacket data5 =
+            String msg,msg2,msg3,msg4,msg7;
+            int msg9,msg5,msg8;
+            DatagramPacket data,data2,data3,data4,data5;
+
+            data5 =
                     new DatagramPacket(buf, buf.length);
             serverMulticastSocket.receive(data5);
+
             msg7 = new String(data5.getData()).trim();
              msg9= Integer.parseInt(msg7);
 
+
             if (msg9==1) {
-                DatagramPacket data =
+                System.out.println("addition");
+                 data =
                         new DatagramPacket(buf, buf.length);
                 serverMulticastSocket.receive(data);
 
-                DatagramPacket data2 =
+
+                msg =  new String(data.getData()).trim();
+                data2 =
                         new DatagramPacket(buf, buf.length);
                 serverMulticastSocket.receive(data2);
-                msg =  new String(data.getData()).trim();
-
                msg2 = new String(data2.getData()).trim();
 
                  msg5 = Integer.parseInt(msg) + Integer.parseInt(msg2);
@@ -51,16 +56,18 @@ int msg9,msg5,msg8;
 
             }
             else{
-                DatagramPacket data3 =
+                System.out.println("Multiplikation");
+                data3 =
                         new DatagramPacket(buf, buf.length);
                 serverMulticastSocket.receive(data3);
 
 
-                DatagramPacket data4 =
-                        new DatagramPacket(buf, buf.length);
-                serverMulticastSocket.receive(data4);
+
                 msg3 = new String(data3.getData()).trim();
 
+                data4 =
+                        new DatagramPacket(buf, buf.length);
+                serverMulticastSocket.receive(data4);
 
                  msg4 = new String(data4.getData()).trim();
 
